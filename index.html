@@ -1,129 +1,173 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BIMBA Rainbow Kids - Vila Gading Royal</title>
+    <meta name="description" content="Les Baca Tulis Hitung (Calistung) metode Fun Learning di Parung. Coba Gratis sekarang!">
     
-    <!-- Tailwind CSS (CDN) - Agar tampilan cantik tanpa install -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Lucide Icons (CDN) - Untuk ikon-ikon -->
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Nunito (Rounded & Friendly) -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
         body { font-family: 'Nunito', sans-serif; }
-        /* Animasi halus */
-        .fade-in { animation: fadeIn 0.5s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .blob { position: absolute; filter: blur(40px); z-index: -1; opacity: 0.5; }
+        /* Animasi */
+        .fade-up { animation: fadeUp 0.8s ease-out forwards; opacity: 0; transform: translateY(20px); }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #fca5a5; }
     </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rainbow: {
+                            red: '#FF6B6B',
+                            orange: '#FF9F43',
+                            yellow: '#FECA57',
+                            green: '#1DD1A1',
+                            blue: '#54A0FF',
+                            purple: '#5F27CD'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-gradient-to-b from-teal-50 via-blue-50 to-pink-50 min-h-screen selection:bg-pink-200 text-gray-700">
+<body class="bg-slate-50 text-slate-700 overflow-x-hidden">
 
     <!-- --- NAVBAR --- -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-teal-100 rounded-b-2xl mx-auto max-w-7xl inset-x-0 top-0">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur shadow-sm border-b-4 border-rainbow-blue rounded-b-3xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gradient-to-br from-pink-400 via-yellow-400 to-teal-400 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md border-2 border-white">
+                    <div class="w-10 h-10 bg-gradient-to-br from-rainbow-red via-rainbow-yellow to-rainbow-blue rounded-full flex items-center justify-center text-white font-black text-sm shadow-md border-2 border-white">
                         RK
                     </div>
                     <div class="flex flex-col">
-                        <span class="font-extrabold text-xl tracking-tight leading-none">
-                            <span class="text-pink-500">Rainbow</span> <span class="text-teal-500">Kids</span>
+                        <span class="font-black text-xl tracking-tight leading-none">
+                            <span class="text-rainbow-red">Rainbow</span> <span class="text-rainbow-blue">Kids</span>
                         </span>
-                        <span class="text-gray-400 text-xs font-medium ml-0.5">Vila Gading Royal</span>
+                        <span class="text-slate-400 text-[10px] font-bold uppercase tracking-wider">Vila Gading Royal</span>
                     </div>
                 </div>
 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#keunggulan" class="text-gray-600 hover:text-pink-500 font-bold transition">Mengapa Kami?</a>
-                    <a href="#program" class="text-gray-600 hover:text-pink-500 font-bold transition">Program</a>
-                    <a href="#lokasi" class="text-gray-600 hover:text-pink-500 font-bold transition">Lokasi</a>
-                    <button onclick="hubungiWhatsApp()" class="bg-gradient-to-r from-pink-500 to-red-400 hover:from-pink-600 hover:to-red-500 text-white px-6 py-2.5 rounded-full font-bold transition shadow-lg hover:shadow-xl flex items-center gap-2 transform hover:-translate-y-0.5 border-2 border-white cursor-pointer">
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#keunggulan" class="font-bold text-slate-600 hover:text-rainbow-blue transition">Keunggulan</a>
+                    <a href="#galeri" class="font-bold text-slate-600 hover:text-rainbow-blue transition">Galeri</a>
+                    <a href="#program" class="font-bold text-slate-600 hover:text-rainbow-blue transition">Program</a>
+                    <a href="#faq" class="font-bold text-slate-600 hover:text-rainbow-blue transition">Tanya Jawab</a>
+                    <button onclick="hubungiWhatsApp()" class="bg-rainbow-green hover:bg-emerald-500 text-white px-6 py-2.5 rounded-full font-bold transition shadow-lg hover:shadow-xl flex items-center gap-2 transform hover:-translate-y-0.5 border-2 border-white">
                         <i data-lucide="phone" class="w-4 h-4"></i>
-                        Daftar Sekarang
+                        Daftar Trial
                     </button>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-teal-600 hover:text-pink-500 focus:outline-none bg-teal-50 p-2 rounded-xl">
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-rainbow-blue bg-blue-50 p-2 rounded-xl hover:bg-blue-100 transition">
                         <i data-lucide="menu" class="w-7 h-7"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile Menu Content (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 rounded-b-2xl shadow-lg absolute w-full fade-in">
+        <!-- Mobile Menu Content -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl rounded-b-2xl">
             <div class="px-4 pt-2 pb-6 space-y-2">
-                <a href="#keunggulan" onclick="toggleMenu()" class="block px-4 py-3 rounded-xl text-base font-bold text-gray-700 hover:text-pink-500 hover:bg-pink-50">Mengapa Kami?</a>
-                <a href="#program" onclick="toggleMenu()" class="block px-4 py-3 rounded-xl text-base font-bold text-gray-700 hover:text-pink-500 hover:bg-pink-50">Program</a>
-                <a href="#lokasi" onclick="toggleMenu()" class="block px-4 py-3 rounded-xl text-base font-bold text-gray-700 hover:text-pink-500 hover:bg-pink-50">Lokasi</a>
-                <button onclick="hubungiWhatsApp()" class="w-full mt-4 bg-teal-500 text-white py-3 rounded-xl font-bold flex justify-center items-center gap-2 shadow-md">
-                    <i data-lucide="phone" class="w-5 h-5"></i> Chat WhatsApp
+                <a href="#keunggulan" onclick="toggleMenu()" class="block px-4 py-3 rounded-xl font-bold text-slate-600 hover:bg-blue-50 hover:text-rainbow-blue">Keunggulan</a>
+                <a href="#galeri" onclick="toggleMenu()" class="block px-4 py-3 rounded-xl font-bold text-slate-600 hover:bg-blue-50 hover:text-rainbow-blue">Galeri Kegiatan</a>
+                <a href="#program" onclick="toggleMenu()" class="block px-4 py-3 rounded-xl font-bold text-slate-600 hover:bg-blue-50 hover:text-rainbow-blue">Program Belajar</a>
+                <a href="#faq" onclick="toggleMenu()" class="block px-4 py-3 rounded-xl font-bold text-slate-600 hover:bg-blue-50 hover:text-rainbow-blue">Tanya Jawab</a>
+                <a href="#lokasi" onclick="toggleMenu()" class="block px-4 py-3 rounded-xl font-bold text-slate-600 hover:bg-blue-50 hover:text-rainbow-blue">Lokasi</a>
+                <button onclick="hubungiWhatsApp()" class="w-full mt-2 bg-rainbow-green text-white py-3 rounded-xl font-bold flex justify-center items-center gap-2 shadow">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i> Chat WhatsApp
                 </button>
             </div>
         </div>
     </nav>
 
     <!-- --- HERO SECTION --- -->
-    <header class="pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden relative">
-        <!-- Decorative Background Elements -->
-        <div class="absolute top-20 left-0 w-32 h-32 bg-yellow-200 rounded-full blur-3xl opacity-60"></div>
-        <div class="absolute top-40 right-0 w-64 h-64 bg-pink-200 rounded-full blur-3xl opacity-50"></div>
-        
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
+    <header class="pt-32 pb-20 lg:pt-40 lg:pb-32 relative overflow-hidden bg-gradient-to-b from-blue-50 to-white">
+        <!-- Background Blobs -->
+        <div class="blob bg-rainbow-yellow w-64 h-64 rounded-full top-20 left-0 blur-3xl opacity-40"></div>
+        <div class="blob bg-rainbow-red w-80 h-80 rounded-full top-40 right-0 blur-3xl opacity-30"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="lg:grid lg:grid-cols-2 gap-12 items-center">
                 
-                <!-- Text Content -->
-                <div class="lg:col-span-7 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur border border-white rounded-full text-teal-700 text-sm font-bold mb-6 shadow-sm">
-                        <span class="flex h-2 w-2 relative">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
-                        </span>
+                <!-- Text -->
+                <div class="text-center lg:text-left fade-up" style="animation-delay: 0.1s;">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-white border-2 border-rainbow-blue/20 rounded-full text-rainbow-blue text-sm font-bold mb-6 shadow-sm">
+                        <span class="animate-pulse bg-rainbow-green w-2 h-2 rounded-full"></span>
                         Telah Dibuka di Vila Gading Royal!
                     </div>
                     
-                    <h1 class="text-4xl tracking-tight font-extrabold text-teal-900 sm:text-5xl md:text-6xl mb-6 leading-tight drop-shadow-sm">
-                        Bermain Sambil <br/>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400">Belajar Ceria</span>
+                    <h1 class="text-4xl lg:text-6xl font-black text-slate-800 mb-6 leading-tight">
+                        Tumbuhkan Minat Baca <br/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-rainbow-red to-rainbow-orange">Tanpa Paksaan</span>
                     </h1>
                     
-                    <p class="mt-4 text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                        Pilihan terbaik untuk buah hati Anda. Metode <strong>Fun Learning</strong> yang membuat anak semangat belajar, tumbuh cerdas, dan selalu tersenyum!
+                    <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+                        Metode <strong>Fun Learning</strong> yang membuat anak usia 3-6 tahun mencintai kegiatan membaca dan belajar. Datang dengan senyum, pulang dengan ilmu!
                     </p>
                     
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <button onclick="hubungiWhatsApp()" class="px-8 py-4 bg-gradient-to-r from-teal-400 to-blue-500 hover:from-teal-500 hover:to-blue-600 text-white rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 flex items-center justify-center gap-2 border-2 border-white/20 cursor-pointer">
-                            Daftar Coba Gratis <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        <button onclick="hubungiWhatsApp()" class="bg-rainbow-orange hover:bg-orange-500 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-orange-200 transition transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                            Ambil Coba Gratis <i data-lucide="arrow-right" class="w-5 h-5"></i>
                         </button>
-                        <a href="#program" class="px-8 py-4 bg-white text-pink-500 border-2 border-pink-100 hover:border-pink-300 rounded-full font-bold text-lg transition flex items-center justify-center shadow-sm hover:shadow-md cursor-pointer">
-                            Lihat Program
+                        <a href="#galeri" class="bg-white text-slate-600 border-2 border-slate-200 px-8 py-4 rounded-full font-bold text-lg hover:border-rainbow-blue hover:text-rainbow-blue transition flex items-center justify-center gap-2">
+                            <i data-lucide="image" class="w-5 h-5"></i> Lihat Kegiatan
                         </a>
+                    </div>
+                    
+                    <!-- Quick Info -->
+                    <div class="mt-8 pt-8 border-t border-slate-200 flex flex-wrap justify-center lg:justify-start gap-6 text-sm font-bold text-slate-500">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="check-circle" class="text-rainbow-green w-5 h-5"></i> Usia 3-6 Tahun
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="check-circle" class="text-rainbow-green w-5 h-5"></i> Semi-Privat
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="check-circle" class="text-rainbow-green w-5 h-5"></i> Garansi Fun
+                        </div>
                     </div>
                 </div>
 
-                <!-- Hero Image Placeholder -->
-                <div class="lg:col-span-5 mt-12 lg:mt-0 relative hidden md:block">
-                    <div class="relative rounded-3xl bg-gradient-to-br from-white to-teal-50 p-3 shadow-2xl rotate-2 hover:rotate-0 transition duration-500 border-4 border-white">
-                        <div class="aspect-w-4 aspect-h-3 rounded-2xl overflow-hidden bg-teal-100 relative h-80 flex items-center justify-center group flex-col">
-                             <div class="bg-white p-4 rounded-full inline-block shadow-sm mb-3">
-                                <i data-lucide="smile" class="w-12 h-12 text-yellow-400"></i>
-                             </div>
-                             <p class="font-bold text-teal-700">Area Foto Anak Happy</p>
-                             <p class="text-xs text-teal-500 px-8 text-center mt-2">Masukkan foto anak sedang tertawa sambil memegang buku di sini</p>
-                             
-                             <!-- Decor -->
-                             <div class="absolute top-4 right-4 animate-bounce delay-700 text-2xl">✨</div>
-                             <div class="absolute bottom-4 left-4 animate-bounce text-2xl">🎨</div>
+                <!-- Image -->
+                <div class="mt-12 lg:mt-0 relative fade-up" style="animation-delay: 0.3s;">
+                    <div class="relative bg-white p-3 rounded-[2rem] shadow-2xl rotate-2 hover:rotate-0 transition duration-500 border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Anak belajar bahagia" 
+                             class="rounded-[1.5rem] w-full h-[400px] object-cover"
+                             loading="lazy">
+                        
+                        <!-- Floating Badge -->
+                        <div class="absolute -bottom-6 -left-4 bg-white p-4 rounded-2xl shadow-lg border-l-4 border-rainbow-yellow flex items-center gap-3">
+                            <div class="bg-yellow-100 p-2 rounded-full">
+                                <i data-lucide="star" class="text-rainbow-yellow w-6 h-6 fill-current"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-slate-800 text-sm">Metode Terbukti</p>
+                                <p class="text-xs text-slate-500">Fun Learning System</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -132,193 +176,310 @@
         </div>
     </header>
 
-    <!-- --- KEUNGGULAN --- -->
-    <section id="keunggulan" class="py-16 relative">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="text-center mb-12">
-                 <h2 class="text-2xl md:text-3xl font-extrabold text-teal-800 bg-white/50 inline-block px-6 py-2 rounded-full border-2 border-teal-100 shadow-sm">
-                   Mengapa <span class="text-pink-500">BIMBA Rainbow Kids</span> Pilihan Terbaik?
-                 </h2>
+    <!-- --- KEUNGGULAN (Cards) --- -->
+    <section id="keunggulan" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-black text-slate-800 mb-4">Mengapa Rainbow Kids?</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">Kami fokus membangun karakter pembelajar mandiri sepanjang hayat, bukan sekadar bisa baca cepat.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+            <div class="grid md:grid-cols-3 gap-8">
                 <!-- Card 1 -->
-                <div class="bg-white rounded-3xl p-6 shadow-lg border-b-8 border-teal-200 hover:-translate-y-1 transition duration-300 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-teal-50 rounded-bl-full -mr-4 -mt-4 transition group-hover:bg-teal-100"></div>
-                    <div class="relative z-10 flex flex-col items-center text-center">
-                        <div class="w-16 h-16 bg-teal-100 text-teal-500 rounded-2xl flex items-center justify-center mb-4 shadow-inner">
-                            <i data-lucide="gamepad-2" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-xl font-black text-gray-800 mb-2 bg-teal-50 px-4 py-1 rounded-full text-teal-700">1. METODE FUN LEARNING</h3>
-                        <p class="text-gray-600 text-sm md:text-base leading-relaxed">
-                            Pembelajaran menyenangkan dengan permainan edukatif, membuat anak semangat belajar dan selalu tersenyum!
-                        </p>
+                <div class="group bg-blue-50 rounded-3xl p-8 hover:bg-rainbow-blue hover:text-white transition duration-300 border border-blue-100">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-rainbow-blue mb-6 shadow-sm group-hover:scale-110 transition">
+                        <i data-lucide="smile" class="w-8 h-8"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-3">100% Fun Learning</h3>
+                    <p class="text-sm opacity-90 leading-relaxed">
+                        Dunia anak adalah bermain. Kami menyisipkan materi belajar ke dalam permainan agar anak tidak merasa terbebani.
+                    </p>
                 </div>
-
+                
                 <!-- Card 2 -->
-                <div class="bg-white rounded-3xl p-6 shadow-lg border-b-8 border-pink-200 hover:-translate-y-1 transition duration-300 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-pink-50 rounded-bl-full -mr-4 -mt-4 transition group-hover:bg-pink-100"></div>
-                    <div class="relative z-10 flex flex-col items-center text-center">
-                        <div class="w-16 h-16 bg-pink-100 text-pink-500 rounded-2xl flex items-center justify-center mb-4 shadow-inner">
-                            <i data-lucide="book-open" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-xl font-black text-gray-800 mb-2 bg-pink-50 px-4 py-1 rounded-full text-pink-600">2. MINAT BACA SEJAK DINI</h3>
-                        <p class="text-gray-600 text-sm md:text-base leading-relaxed">
-                            Menumbuhkan cinta membaca sejak usia dini dengan buku-buku cerita menarik dan aktivitas literasi yang seru!
-                        </p>
+                <div class="group bg-pink-50 rounded-3xl p-8 hover:bg-rainbow-red hover:text-white transition duration-300 border border-pink-100">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-rainbow-red mb-6 shadow-sm group-hover:scale-110 transition">
+                        <i data-lucide="user" class="w-8 h-8"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-3">Individual System</h3>
+                    <p class="text-sm opacity-90 leading-relaxed">
+                        Materi disesuaikan dengan kemampuan masing-masing anak. Anak tidak dipaksa mengejar target teman sekelasnya.
+                    </p>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="bg-white rounded-3xl p-6 shadow-lg border-b-8 border-yellow-200 hover:-translate-y-1 transition duration-300 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-yellow-50 rounded-bl-full -mr-4 -mt-4 transition group-hover:bg-yellow-100"></div>
-                    <div class="relative z-10 flex flex-col items-center text-center">
-                        <div class="w-16 h-16 bg-yellow-100 text-yellow-600 rounded-2xl flex items-center justify-center mb-4 shadow-inner">
-                            <i data-lucide="palette" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-xl font-black text-gray-800 mb-2 bg-yellow-50 px-4 py-1 rounded-full text-yellow-700">3. STIMULASI OPTIMAL</h3>
-                        <p class="text-gray-600 text-sm md:text-base leading-relaxed">
-                            Merangsang perkembangan kognitif, motorik, dan sosial anak melalui beragam kegiatan edukatif yang bervariasi.
-                        </p>
+                <div class="group bg-yellow-50 rounded-3xl p-8 hover:bg-rainbow-orange hover:text-white transition duration-300 border border-yellow-100">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-rainbow-orange mb-6 shadow-sm group-hover:scale-110 transition">
+                        <i data-lucide="heart" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Small Step System</h3>
+                    <p class="text-sm opacity-90 leading-relaxed">
+                        Proses belajar dilakukan secara bertahap, mulai dari yang mudah dan disukai anak, sehingga anak selalu merasa "Aku Bisa!".
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- GALERI KEGIATAN (New Section) --- -->
+    <section id="galeri" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
+                <div>
+                    <h2 class="text-3xl font-black text-slate-800">Intip Kegiatan Kami 📸</h2>
+                    <p class="text-slate-600 mt-2">Suasana kelas yang ceria dan penuh warna.</p>
+                </div>
+                <button onclick="hubungiWhatsApp()" class="text-rainbow-blue font-bold hover:underline flex items-center gap-1">
+                    Lihat selengkapnya via WA <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Masonry-like Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-96 md:h-[500px]">
+                <!-- Item 1 (Large Left) -->
+                <div class="col-span-2 row-span-2 relative group overflow-hidden rounded-2xl cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="Kegiatan Bermain">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition"></div>
+                    <div class="absolute bottom-4 left-4 text-white font-bold">Aktivitas Motorik</div>
+                </div>
+                <!-- Item 2 -->
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="Membaca Buku">
+                    <div class="absolute bottom-3 left-3 text-white text-sm font-bold drop-shadow-md">Membaca Seru</div>
+                </div>
+                <!-- Item 3 -->
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="Kelas">
+                    <div class="absolute bottom-3 left-3 text-white text-sm font-bold drop-shadow-md">Suasana Kelas</div>
+                </div>
+                <!-- Item 4 (Wide Bottom) -->
+                <div class="col-span-2 relative group overflow-hidden rounded-2xl cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="Belajar Berhitung">
+                    <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-md">Modul Warna-Warni</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- PROGRAM & KURIKULUM --- -->
+    <section id="program" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-black text-slate-800 mb-12">Apa yang dipelajari Si Kecil?</h2>
+            
+            <div class="flex flex-wrap justify-center gap-6">
+                <!-- Box 1 -->
+                <div class="w-40 h-40 bg-rainbow-red rounded-3xl flex flex-col items-center justify-center text-white shadow-xl shadow-red-200 transform hover:-translate-y-2 transition duration-300">
+                    <i data-lucide="book-open" class="w-10 h-10 mb-2 opacity-80"></i>
+                    <span class="font-bold text-lg">Membaca</span>
+                </div>
+                <!-- Box 2 -->
+                <div class="w-40 h-40 bg-rainbow-orange rounded-3xl flex flex-col items-center justify-center text-white shadow-xl shadow-orange-200 transform hover:-translate-y-2 transition duration-300">
+                    <i data-lucide="edit-3" class="w-10 h-10 mb-2 opacity-80"></i>
+                    <span class="font-bold text-lg">Menulis</span>
+                </div>
+                <!-- Box 3 -->
+                <div class="w-40 h-40 bg-rainbow-yellow rounded-3xl flex flex-col items-center justify-center text-white shadow-xl shadow-yellow-200 transform hover:-translate-y-2 transition duration-300">
+                    <i data-lucide="calculator" class="w-10 h-10 mb-2 opacity-80"></i>
+                    <span class="font-bold text-lg text-slate-800">Berhitung</span>
+                </div>
+                <!-- Box 4 -->
+                <div class="w-40 h-40 bg-rainbow-green rounded-3xl flex flex-col items-center justify-center text-white shadow-xl shadow-green-200 transform hover:-translate-y-2 transition duration-300">
+                    <i data-lucide="languages" class="w-10 h-10 mb-2 opacity-80"></i>
+                    <span class="font-bold text-lg">English</span>
+                </div>
+                <!-- Box 5 -->
+                <div class="w-40 h-40 bg-rainbow-blue rounded-3xl flex flex-col items-center justify-center text-white shadow-xl shadow-blue-200 transform hover:-translate-y-2 transition duration-300">
+                    <i data-lucide="palette" class="w-10 h-10 mb-2 opacity-80"></i>
+                    <span class="font-bold text-lg">Kreativitas</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- FAQ & INFO LENGKAP (New Section) --- -->
+    <section id="faq" class="py-20 bg-blue-50 relative overflow-hidden">
+        <div class="absolute -right-20 top-20 text-blue-100 opacity-50 rotate-12">
+            <i data-lucide="help-circle" class="w-96 h-96"></i>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 relative z-10">
+            <h2 class="text-3xl font-black text-center text-slate-800 mb-12">Informasi Penting & Pertanyaan Umum</h2>
+            
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-blue-100 overflow-hidden">
+                    <button class="w-full px-6 py-4 text-left font-bold text-slate-700 flex justify-between items-center focus:outline-none" onclick="toggleAccordion('faq1')">
+                        <span>Berapa usia minimal untuk mendaftar?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-rainbow-blue transition-transform" id="icon-faq1"></i>
+                    </button>
+                    <div id="faq1" class="hidden px-6 pb-4 text-slate-600 border-t border-slate-100 bg-slate-50">
+                        Kami menerima murid mulai usia <span class="font-bold text-rainbow-blue">3 tahun hingga 6 tahun</span> (usia PAUD/TK). Materi akan disesuaikan dengan kemampuan awal anak.
                     </div>
                 </div>
 
-                <!-- Card 4 -->
-                <div class="bg-white rounded-3xl p-6 shadow-lg border-b-8 border-blue-200 hover:-translate-y-1 transition duration-300 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full -mr-4 -mt-4 transition group-hover:bg-blue-100"></div>
-                    <div class="relative z-10 flex flex-col items-center text-center">
-                        <div class="w-16 h-16 bg-blue-100 text-blue-500 rounded-2xl flex items-center justify-center mb-4 shadow-inner">
-                            <i data-lucide="users" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-xl font-black text-gray-800 mb-2 bg-blue-50 px-4 py-1 rounded-full text-blue-600">4. LINGKUNGAN POSITIF</h3>
-                        <p class="text-gray-600 text-sm md:text-base leading-relaxed">
-                            Suasana belajar yang hangat, ramah, dan mendukung dengan pendidik yang sabar dan penuh kasih sayang!
-                        </p>
+                <!-- FAQ Item 2 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-blue-100 overflow-hidden">
+                    <button class="w-full px-6 py-4 text-left font-bold text-slate-700 flex justify-between items-center focus:outline-none" onclick="toggleAccordion('faq2')">
+                        <span>Berapa lama durasi belajarnya?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-rainbow-blue transition-transform" id="icon-faq2"></i>
+                    </button>
+                    <div id="faq2" class="hidden px-6 pb-4 text-slate-600 border-t border-slate-100 bg-slate-50">
+                        Durasi belajar efektif adalah sekitar <span class="font-bold text-rainbow-blue">1 Jam per sesi</span>. Ini waktu yang optimal agar anak tidak bosan dan tetap fokus.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-blue-100 overflow-hidden">
+                    <button class="w-full px-6 py-4 text-left font-bold text-slate-700 flex justify-between items-center focus:outline-none" onclick="toggleAccordion('faq3')">
+                        <span>Apakah anak dipaksa belajar?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-rainbow-blue transition-transform" id="icon-faq3"></i>
+                    </button>
+                    <div id="faq3" class="hidden px-6 pb-4 text-slate-600 border-t border-slate-100 bg-slate-50">
+                        <strong class="text-red-500">Tentu TIDAK.</strong> Filosofi kami adalah menumbuhkan minat. Jika anak sedang tidak mood, motivator kami memiliki teknik khusus (pengalihan permainan) agar anak kembali ceria mau belajar atas kemauannya sendiri.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-blue-100 overflow-hidden">
+                    <button class="w-full px-6 py-4 text-left font-bold text-slate-700 flex justify-between items-center focus:outline-none" onclick="toggleAccordion('faq4')">
+                        <span>Berapa biayanya?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-rainbow-blue transition-transform" id="icon-faq4"></i>
+                    </button>
+                    <div id="faq4" class="hidden px-6 pb-4 text-slate-600 border-t border-slate-100 bg-slate-50">
+                        Biaya pendaftaran dan SPP sangat terjangkau. Untuk detail promo terbaru bulan ini, silakan hubungi kami via WhatsApp ya Bunda!
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- LOKASI STRATEGIS PANEL -->
-            <div id="lokasi" class="mt-8 bg-white rounded-3xl p-6 md:p-8 shadow-lg border-b-8 border-teal-300 relative overflow-hidden">
-                <div class="md:flex items-center gap-8">
-                    <div class="flex-shrink-0 mb-6 md:mb-0 flex justify-center">
-                        <div class="w-32 h-32 bg-orange-100 rounded-full flex items-center justify-center border-4 border-white shadow-md relative">
-                            <i data-lucide="map-pin" class="w-12 h-12 text-orange-500"></i>
-                            <div class="absolute -bottom-2 bg-white px-3 py-1 rounded-full shadow text-xs font-bold text-gray-600">Strategis</div>
-                        </div>
-                    </div>
-                    <div class="text-center md:text-left flex-grow">
-                        <h3 class="text-xl md:text-2xl font-black text-teal-800 mb-2 flex items-center justify-center md:justify-start gap-2">
-                            <span class="bg-teal-100 p-1 rounded-md text-teal-600 text-sm">5.</span> LOKASI STRATEGIS
-                        </h3>
-                        <div class="bg-teal-50 inline-block px-4 py-2 rounded-lg text-teal-700 font-bold mb-3 border border-teal-100">
-                            Perum. Vila Gading Royal
-                        </div>
-                        <p class="text-gray-600">
-                            Lokasi yang mudah dijangkau di perumahan yang aman dan nyaman, memudahkan akses bagi orang tua!
+    <!-- --- LOKASI --- -->
+    <section id="lokasi" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2.5rem] p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
+                <!-- Circle Decoration -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -mr-20 -mt-20"></div>
+
+                <div class="md:flex gap-12 items-center">
+                    <div class="flex-1 mb-8 md:mb-0">
+                        <div class="inline-block bg-rainbow-orange text-white text-xs font-bold px-3 py-1 rounded-md mb-4">LOKASI KAMI</div>
+                        <h2 class="text-3xl font-bold mb-4">Mudah Dijangkau dari Rumah Bunda</h2>
+                        <p class="text-slate-300 mb-6 leading-relaxed">
+                            Lokasi kami sangat strategis di dalam perumahan yang aman, nyaman, dan bebas banjir. Parkir luas untuk Bunda yang mengantar.
                         </p>
-                    </div>
-                    <div class="mt-6 md:mt-0 flex-shrink-0 text-center">
-                        <a href="https://maps.google.com/?q=Vila+Gading+Royal+Parung" target="_blank" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl shadow-md transition">
-                            Lihat Peta
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-white/10 p-3 rounded-full">
+                                    <i data-lucide="map-pin" class="text-rainbow-blue"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Alamat</h4>
+                                    <p class="text-slate-400 text-sm">Perumahan Vila Gading Royal, Desa Pamegarsari, Kec. Parung, Kab. Bogor</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="bg-white/10 p-3 rounded-full">
+                                    <i data-lucide="clock" class="text-rainbow-green"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Jam Operasional</h4>
+                                    <p class="text-slate-400 text-sm">Senin - Jumat: 08.00 - 16.00 WIB<br>Sabtu: 08.00 - 12.00 WIB</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="https://maps.google.com/?q=Vila+Gading+Royal+Parung" target="_blank" class="inline-block mt-8 bg-white text-slate-900 font-bold px-6 py-3 rounded-xl hover:bg-slate-200 transition">
+                            Buka Google Maps
                         </a>
                     </div>
+                    
+                    <!-- Map Placeholder / Image -->
+                    <div class="flex-1">
+                        <div class="bg-slate-700 rounded-2xl h-64 w-full flex items-center justify-center border-2 border-slate-600 relative overflow-hidden group">
+                            <!-- Background map image generic -->
+                            <img src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 transition">
+                            <div class="relative z-10 text-center">
+                                <i data-lucide="map" class="w-12 h-12 mx-auto mb-2 text-white"></i>
+                                <span class="font-bold">Vila Gading Royal</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- --- PROGRAMS --- -->
-    <section id="program" class="py-16 bg-white/50 backdrop-blur-sm">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-extrabold text-gray-800">Program Unggulan</h2>
-            </div>
-            
-            <div class="flex flex-wrap justify-center gap-4">
-                <!-- Program 1 -->
-                <div class="bg-pink-400 w-32 h-32 md:w-40 md:h-40 rounded-2xl flex flex-col items-center justify-center shadow-lg border-b-8 border-pink-500 text-white transform hover:scale-105 transition cursor-default">
-                    <i data-lucide="star" class="mb-2 opacity-80 w-6 h-6"></i>
-                    <span class="font-black text-lg md:text-xl tracking-wide">Membaca</span>
-                </div>
-                <!-- Program 2 -->
-                <div class="bg-purple-400 w-32 h-32 md:w-40 md:h-40 rounded-2xl flex flex-col items-center justify-center shadow-lg border-b-8 border-purple-500 text-white transform hover:scale-105 transition cursor-default">
-                    <i data-lucide="edit-3" class="mb-2 opacity-80 w-6 h-6"></i>
-                    <span class="font-black text-lg md:text-xl tracking-wide">Menulis</span>
-                </div>
-                <!-- Program 3 -->
-                <div class="bg-teal-400 w-32 h-32 md:w-40 md:h-40 rounded-2xl flex flex-col items-center justify-center shadow-lg border-b-8 border-teal-500 text-white transform hover:scale-105 transition cursor-default">
-                    <i data-lucide="calculator" class="mb-2 opacity-80 w-6 h-6"></i>
-                    <span class="font-black text-lg md:text-xl tracking-wide">Berhitung</span>
-                </div>
-                <!-- Program 4 -->
-                <div class="bg-orange-400 w-32 h-32 md:w-40 md:h-40 rounded-2xl flex flex-col items-center justify-center shadow-lg border-b-8 border-orange-500 text-white transform hover:scale-105 transition cursor-default">
-                    <i data-lucide="languages" class="mb-2 opacity-80 w-6 h-6"></i>
-                    <span class="font-black text-lg md:text-xl tracking-wide">English</span>
-                </div>
-            </div>
+    <!-- --- CTA FOOTER --- -->
+    <section class="py-20 bg-slate-50 text-center px-4">
+        <h2 class="text-3xl md:text-5xl font-black text-slate-800 mb-6">
+            Siap melihat Si Kecil <br/> <span class="text-rainbow-blue">Pintar Membaca?</span>
+        </h2>
+        <p class="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
+            Jangan biarkan potensi emas anak terlewatkan. Daftarkan untuk <strong>Coba Gratis (Free Trial)</strong> sekarang juga. Kuota terbatas setiap minggunya!
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button onclick="hubungiWhatsApp()" class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-bold text-xl shadow-xl hover:shadow-2xl transition transform hover:scale-105 flex items-center gap-3 animate-bounce">
+                <i data-lucide="message-circle" class="w-6 h-6"></i>
+                WhatsApp: 0896-0156-5631
+            </button>
         </div>
+        <p class="mt-6 text-sm text-slate-400">Tekan tombol di atas untuk terhubung langsung dengan Admin.</p>
     </section>
 
-    <!-- --- FOOTER CTA --- -->
-    <section class="py-12 pb-24">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="bg-white rounded-3xl p-8 md:p-10 shadow-2xl border-4 border-white text-center relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-pink-400 via-yellow-400 to-teal-400"></div>
-                
-                <h2 class="text-2xl md:text-3xl font-black text-gray-800 mb-2">
-                    DAFTARKAN SI KECIL SEKARANG!
-                </h2>
-                <p class="text-lg md:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-pink-500 mb-6">
-                    ✨ DAPATKAN COBA GRATIS! ✨
-                </p>
-                
-                <div class="bg-gray-50 rounded-xl p-4 inline-block mb-6 border border-gray-100">
-                    <p class="font-bold text-gray-700">BiMBA Rainbow Kids Perum. Vila Gading Royal</p>
-                </div>
-
-                <div class="flex justify-center">
-                    <button onclick="hubungiWhatsApp()" class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-full shadow-lg transition transform hover:scale-105 flex items-center gap-3 text-lg cursor-pointer">
-                        <i data-lucide="phone" class="w-6 h-6"></i>
-                        Hubungi Kami: 0896-0156-5631
-                    </button>
-                </div>
+    <!-- Footer Copyright -->
+    <footer class="bg-white border-t border-slate-200 py-8 text-center text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>© <span id="year"></span> BIMBA Rainbow Kids Parung.</p>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-rainbow-blue">Instagram</a>
+                <a href="#" class="hover:text-rainbow-blue">Facebook</a>
             </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="text-center py-6 text-gray-400 text-sm">
-        <p>© <span id="year"></span> BIMBA Rainbow Kids Parung.</p>
     </footer>
 
-    <!-- JAVASCRIPT FUNCTIONALITY -->
+    <!-- Scripts -->
     <script>
-        // 1. Inisialisasi Icons (Lucide)
+        // 1. Init Icons
         lucide.createIcons();
-
-        // 2. Set Tahun Otomatis
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // 3. Fungsi Tombol WhatsApp
+        // 2. WhatsApp Function
         function hubungiWhatsApp() {
             const phone = "6289601565631";
-            const message = "Halo Admin BIMBA Rainbow Kids, saya mau tanya info pendaftaran dan Coba Gratis.";
-            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
+            const message = "Halo Admin BIMBA Rainbow Kids Vila Gading Royal, saya mau tanya info pendaftaran dan jadwal Trial Gratis.";
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        // 4. Fungsi Mobile Menu (Buka/Tutup)
-        const menuBtn = document.getElementById('mobile-menu-btn');
+        // 3. Mobile Menu Toggle
         const mobileMenu = document.getElementById('mobile-menu');
-
         function toggleMenu() {
             mobileMenu.classList.toggle('hidden');
         }
+        document.getElementById('mobile-menu-btn').addEventListener('click', toggleMenu);
 
-        menuBtn.addEventListener('click', toggleMenu);
+        // 4. Accordion Logic
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            
+            // Close others (optional - remove this block if you want multiple open)
+            document.querySelectorAll('[id^="faq"]').forEach(el => {
+                if(el.id !== id) el.classList.add('hidden');
+            });
+            document.querySelectorAll('[id^="icon-faq"]').forEach(el => {
+                if(el.id !== 'icon-' + id) el.style.transform = 'rotate(0deg)';
+            });
+
+            // Toggle current
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
     </script>
 </body>
 </html>
